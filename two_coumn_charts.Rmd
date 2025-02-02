@@ -1,0 +1,192 @@
+---
+title:  \color{profblue} \LARGE \textbf{Sample Report}
+subtitle: \color{myblue} \Large \textbf{Subtitle}
+author: "Jane Doe"
+date: "September 2024"
+output: 
+  bookdown::pdf_document2:
+    toc: false
+    toc_depth: 2
+  latex_engine: xelatex
+  citation_package: biblatex
+biblio-style: apacite
+link-citations: true
+nocite: '@*'
+fontsize: 12pt
+urlcolor: blue
+linkcolor: red
+header-includes:
+   - \usepackage{multicol}
+   - \usepackage{url}
+   - \usepackage{cite}
+   - \usepackage{lipsum}
+   - \usepackage{hyperref}
+   - \usepackage{pagecolor}
+   - \usepackage{tcolorbox}
+   - \definecolor{myblue}{cmyk}{1.00, 0.50, 0.00, 0.60, 1.00}
+   - \usepackage{fancyhdr}
+   - \usepackage{titling}
+   - \usepackage{float}
+   - \usepackage{sectsty} % Enables custom section titles
+   - \usepackage{setspace}
+   - \usepackage{graphicx}
+   - \usepackage{lipsum}
+   - \usepackage{geometry}
+      \geometry{
+        left=20mm,
+        right=20mm,
+        top=25mm,
+        bottom=25mm,}
+   - \pagestyle{fancy}
+   - \linespread{1}
+   - \usepackage{pdfpages}
+   - \usepackage{booktabs}
+   - \usepackage{longtable}
+   - \usepackage{array}
+   - \usepackage{multirow}
+   - \usepackage{wrapfig}
+   - \usepackage{float}
+   - \usepackage{colortbl}
+   - \usepackage{pdflscape}
+   - \usepackage{tabu}
+   - \usepackage{etoolbox}
+   - \makeatletter
+   - \patchcmd{\f@nch@head}{\rlap}{\color{mygreen}\rlap}{}{}
+   - \patchcmd{\headrule}{\hrule}{\color{profblue}\hrule}{}{}
+   - \patchcmd{\f@nch@foot}{\rlap}{\color{mygreen}\rlap}{}{}
+   - \patchcmd{\footrule}{\hrule}{\color{profblue}\hrule}{}{}
+   - \makeatother
+   - \usepackage{threeparttable}
+   - \usepackage{threeparttablex}
+   - \usepackage[normalem]{ulem}
+   - \usepackage{makecell}
+   - \usepackage{caption}
+   - \pagestyle{fancyplain} %remove for first page
+   - \fancyhf{}
+   - \lhead{ \fancyplain{}{Fancy header \#5} }
+   - \rhead{\includegraphics[width = .05\textwidth]{wind.jpg}}
+   - \fancyfoot[L]{Fancy footer sample}%
+   - \fancyfoot[R]{\thepage}
+   - \renewcommand{\headrulewidth}{0.4pt}% Default \headrulewidth is 0.4pt
+   - \renewcommand{\footrulewidth}{0.4pt}% Default \footrulewidth is 0pt    - \definecolor{navy}{HTML}{040743}
+   - \definecolor{mygreen}{HTML}{023e8a}
+   - \definecolor{profblue}{HTML}{0077b6}
+   - \usepackage{tikz}
+   - \usepackage[explicit,]{titlesec}
+   - \sectionfont{\color{profblue}}  % sets colour of chapters 
+---
+
+```{r setup, include=FALSE, message = FALSE, echo = FALSE, warning = FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library(tidyverse)
+library(patchwork)
+library(lattice)
+library(scales)
+library(gridExtra)
+theme_set(theme_bw())
+library(ggplot2)
+library(ggplot2)
+library(knitr)
+library(kableExtra)
+library(bibtex)
+library(RefManageR)
+library(hrbrthemes)
+library(tidyverse)
+library(forecast)
+library(lubridate)
+library(zoo)
+library(rmarkdown)
+library(viridisLite)
+library(scales)
+library(tinytex)
+library(timetk)
+library(treemapify)
+library(dplyr)
+library(ggplot2)
+library(plotly)
+library(knitr)
+library(kableExtra)
+library(DT)
+library(ggimage)
+library(showtext)
+```
+
+\spacing{1.2}
+
+\begin{multicols}{2}[\columnsep=1cm]
+
+\section*{Summary}
+\lipsum{1-5}
+
+\end{multicols}
+
+\newpage
+
+```{r, echo=FALSE,  message=FALSE, eval=TRUE, message=FALSE, warning=FALSE, results='asis'}
+
+p1 <- ggplot(mtcars) + 
+  geom_point(aes(mpg, disp)) + 
+  ggtitle('Plot 1')
+
+p2 <- ggplot(mtcars) + 
+  geom_boxplot(aes(gear, disp, group = gear)) + 
+  ggtitle('Plot 2')
+
+p3 <- ggplot(mtcars) + 
+  geom_point(aes(hp, wt, colour = mpg)) + 
+  ggtitle('Plot 3')
+
+p4 <- ggplot(mtcars) + 
+  geom_bar(aes(gear)) + 
+  facet_wrap(~cyl) + 
+  ggtitle('Plot 4')
+
+p5 <- ggplot(mtcars) + 
+  geom_point(aes(mpg, disp)) + 
+  ggtitle('Plot 5')
+
+p6 <- ggplot(mtcars) + 
+  geom_boxplot(aes(gear, disp, group = gear)) + 
+  ggtitle('Plot 6')
+
+p1 + (p2 / p3 / p4)
+```
+
+```{r, echo=FALSE,  message=FALSE, eval=TRUE, message=FALSE, warning=FALSE, results='asis'}
+
+q1 <- ggplot(mtcars) + geom_point(aes(mpg, disp))
+q2 <- ggplot(mtcars) + geom_boxplot(aes(gear, disp, group = gear))
+q3 <- ggplot(mtcars) + geom_smooth(aes(disp, qsec))
+q4 <- ggplot(mtcars) + geom_bar(aes(carb))
+
+library(magrittr)
+library(multipanelfigure)
+
+figure1 <- multi_panel_figure(columns = 2, rows = 3, panel_label_type = "upper-roman")
+
+figure1 %<>%
+  fill_panel(q1, column = 1, row = 1:3) %<>%
+  fill_panel(q2, column = 2, row = 1) %<>%
+  fill_panel(q3, column = 2, row = 2) %<>%
+  fill_panel(q4, column = 2, row = 3)
+figure1
+```
+
+```{r, echo=FALSE,  message=FALSE, eval=TRUE, message=FALSE, warning=FALSE, results='asis'}
+
+library(ggplot2)
+library(cowplot)
+
+# plots
+p1 <- ggplot(mtcars, aes(disp, mpg)) + 
+  geom_point()
+p2 <- ggplot(mtcars, aes(carb)) +
+  geom_bar()
+p3 <- ggplot(mtcars, aes(x = NULL, y = disp)) + 
+  geom_boxplot()
+
+# Left column with two plots
+left_col <- plot_grid(p1, p2, ncol = 1)
+# Combine leff_col with third plot
+plot_grid(left_col, p3, ncol = 2)
+```
